@@ -1,19 +1,21 @@
 package user
 
 import (
-	"base_auth/middlewares"
-
 	"github.com/kataras/iris/v12"
+	"base_auth/middlewares"
 )
 
-func EquipRouter(app *iris.Application){
+func EquipRouter(app iris.Party){
 	userParty:= app.Party("/user")
 	{
-		userParty.Get("/", middlewares.CheckJwt, getAll)
 		userParty.Post("/", register)
 		userParty.Post("/login", login)
 		userParty.Delete("/{idUser}", deleteUser)
+		
+
+		userParty.Use(middlewares.AuthMiddleware())
+		userParty.Get("/", getAll)
+		
 	}
-	
 }
 

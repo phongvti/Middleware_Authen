@@ -16,6 +16,10 @@ type User struct{
 	Role 	 int 			`json:"role"`
 }
 
+type UserDTO struct{
+	Username string 	`json:"username"`
+}
+
 
 func Hash (password string) (string, error){
 	bytes, err:= bcrypt.GenerateFromPassword([]byte(password), 14)

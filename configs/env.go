@@ -23,3 +23,11 @@ func EnvSecretKey() string{
 
 	return os.Getenv("SECRET_JWT")
 }
+
+func EnvSignKey() string {
+	err:= godotenv.Load()
+	if err!=nil{
+		log.Fatal("Error load .env file")
+	}
+	return os.Getenv("SIG_KEY")
+}
